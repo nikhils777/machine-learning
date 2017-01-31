@@ -12090,7 +12090,7 @@ Standard deviation of prices: $165,171.13
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
 
 <span class="c1"># TODO: Shuffle and split the data into training and testing subsets</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Success</span>
 <span class="k">print</span> <span class="s2">&quot;Training and testing split was successful.&quot;</span>
@@ -13823,7 +13823,7 @@ xotTkiRJkiRJGhovTkmSJEmSJGlo/gerrOt8YKnUzQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> I chose the graph with max_depth = 10. As more points are added to the training curve, the training curve seems to converge areound 1.0. As more points are added to the testing score, it seems to converge between .6 and .8, closer to .6. I think adding more points may benefit the model because the testing curve seems to start curving downwards after the number of training points becomes greater than 250. Thus, with more training points we could see if the testing curve converges to .6 or falls below that value. Adding more training points would probably not affect the training curve much because it seems to concistently stay at 1.0</p>
+<p><strong>Answer: </strong> I chose the graph with max_depth = 10. Initially the training curve starts with at a value of 1.0 and remains at that value as more data is added. The testing curve starts at a value of 0 and as more points are added to the testing curve, it seems to converge between .6 and .8, closer to .6. Adding more points would not not result in better performance of the model because the testing curve seems to start diverging from its optimal score of after 300 points and the training curve stays at 1.0 no matter how many points there are.</p>
 
 </div>
 </div>
@@ -14598,7 +14598,7 @@ MzMzsxLmZM3MzMyshDlZMzMzMythTtbMzMzMStj/AyGlqz6vVz39AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> At a max depth of 1 the model seems to suffer from more from high bias because the complexity of the model is lower and the training and validation curves seem to be pretty close to each other. After the graph reaches a max depth of 4, the validation score begins to fall and the training score continues to increase meaning that the model might be starting to suffer from high variance. At a maximum depth of 10 the graph seems to be suffering from high variance because the model complexity is high and this is where the training score and validation scores are furthest away from each other on the graph.</p>
+<p><strong>Answer: </strong> At a max depth of 1 the model seems to suffer from more from high bias because the complexity of the model is lower and the error of the training score is the highest at this point, it is around .5. The training score and validation score are also close to each other at a max depth of 1, indicating that there is low variance at this point. After the graph reaches a max depth of 4, the validation score begins to fall and the training score continues to increase meaning that the model might be starting to suffer from high variance. At a maximum depth of 10 the graph seems to be suffering from high variance because the model complexity is high and this is where the training score and validation scores are furthest away from each other on the graph.</p>
 
 </div>
 </div>
@@ -14618,7 +14618,7 @@ MzMzsxLmZM3MzMyshDlZMzMzMythTtbMzMzMStj/AyGlqz6vVz39AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> The max depth that best generalizes the data is probably 4. At this point the model has reached enough complexity to minimize bias. Also the scores have not begun to diverge yet so it has not begun to suffer from high variance yet. This seems like the best point to minimize bias and variance.</p>
+<p><strong>Answer: </strong> The max depth that best generalizes the data is probably 4. At this point the model has reached enough complexity to minimize bias. Also the scores have not begun to diverge yet so it has not begun to suffer from high variance yet. This seems like the best point to minimize bias and variance. This is also the point where the error in the testing and training scores is the lowest.</p>
 
 </div>
 </div>
@@ -14670,7 +14670,7 @@ MzMzsxLmZM3MzMyshDlZMzMzMythTtbMzMzMStj/AyGlqz6vVz39AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> K-fold cross validation splits the dataset into k equal sized samples. One of the samples is used as the test sample and the rest are used as training samples. The cross validation process is repeated k times and until each of the samples has been used as a test sample. The advantage if this is that all of the data is used at some point for testing and training. This allows for the influence of extreme data samples to be minimal which can be problamatic when using grid search without a cross-validated set.</p>
+<p><strong>Answer: </strong> K-fold cross validation splits the dataset into k equal sized samples. One of the samples is used as the test sample and the rest are used as training samples. The cross validation process is repeated k times and until each of the samples has been used as a test sample. At the end, the average error across all k trials is computed The advantage of this is that all of the data is used at some point for testing and training. One disadvantage is that the computation time can become very lengthy depending on the number of k-folds. K-fold cross validation allows for the influence of extreme data samples to be minimal which can be problamatic when using grid search without a cross-validated set. This certainly helps with optimizing a model because all of the data is used for testing and training. Any misleading data or errors from a single testing set are minimized because the average of all the errors is taken which creates a more efficient model that generalizes to all of the data better.</p>
 
 </div>
 </div>
@@ -14890,7 +14890,7 @@ Predicted selling price for Client 3&#39;s home: $922,800.00
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> I think the prices generated for the homes by the regression were fairly reasonable and according to what I predicted in Question 1 - Feature Observation. Client 2's home, which has the lowest predicted selling price of 222,785.29, has the least amount of rooms, 4, the highest poverty level, 32%, and the highest student-teacher ratio, 22-1. Client 2's home has 5 rooms, a 17% poverty level, and a lower student-teacher ratio of 15-1 which makes its price of 404,682.35 seem reasonable. Client 3's home has the greatest number of rooms, 8, the lowest poverty level, 3%, and a relatively low student-teacher ratio of 12-1 which suggests that it is in more of an upper class area. It seems appropriate to price it at 922,800 for those reasons.</p>
+<p><strong>Answer: </strong> I think the prices generated for the homes by the regression were fairly reasonable and according to what I predicted in Question 1 - Feature Observation. More rooms leads to higher prices, higher poverty level decreses prices, and a low student-teacher ratio icreases prices. Client 2's home, which has the lowest predicted selling price of 222,785.29, has the least amount of rooms, 4, the highest poverty level, 32%, and the highest student-teacher ratio, 22-1. Client 1's home has 5 rooms, a 17% poverty level, and a lower student-teacher ratio of 15-1 which makes its price of 404,682.35 seem reasonable. Client 3's home has the greatest number of rooms, 8, the lowest poverty level, 3%, and a relatively low student-teacher ratio of 12-1 which suggests that it is in more of an upper class area. It seems appropriate to price it at 922,800 for those reasons.</p>
 
 </div>
 </div>
@@ -14965,7 +14965,7 @@ Range in prices: $73,357.39
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> This data from 1978 is somewhat relevant to the modern world. I think the trends displayed by rooms, poverty level, and student-teacher ratio would still occur in data collected from 2017. However, I think factors such as inflation and increased cost-of-living counld significantly alter home prices. A more modern model would take factors such as these into account. There are definitely many other factors of a home such as age and the material that it is constructed from that could help describe a home better and help create more accurate predictions. The model used in this project showed a large range in predicted prices based on the Predict Trials method used above. Data collected in an urban city would not be applicable in a rural city because the price of land and contruction varies greatly. Generally homes cost much less in rural cities than in urban cities.</p>
+<p><strong>Answer: </strong> This data from 1978 is somewhat relevant to the modern world. I think the trends displayed by rooms, poverty level, and student-teacher ratio would still occur in data collected from 2017. However, I think factors such as inflation and increased cost-of-living counld significantly alter home prices. A more modern model would take factors such as these into account. There are definitely many other factors of a home such as age and the material that it is constructed from that could help describe a home better and help create more accurate predictions. The model used in this project showed a large range in predicted prices based on the Predict Trials method used above. Data collected in an urban city would not be applicable in a rural city because the price of land and contruction varies greatly. Generally homes cost much less in rural cities than in urban cities. I think this model is not quite ready to use in a real world setting in the year 2017 because the price predictions it would produce may not be be accurate due to the factors I mentioned above such as inflation. However if the model could be updated to reflect those factors, it would definitely be ready to use in a real world setting.</p>
 
 </div>
 </div>
