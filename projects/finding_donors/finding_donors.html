@@ -13466,8 +13466,8 @@ In the code block below, you will need to implement the following:</p>
     <span class="c1"># Adjusting size of training and testing data with sample size</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">sample_size</span><span class="p">]</span>
     <span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">sample_size</span><span class="p">]</span>
-    <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:</span><span class="n">sample_size</span><span class="p">]</span>
-    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[:</span><span class="n">sample_size</span><span class="p">]</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span>
     
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># Get start time</span>
     <span class="n">learner</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -14800,7 +14800,7 @@ RPO3oAyxKXUAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> 
-The model we are using here to solve our problem is called Logistic Regression. This model is good at making predictions for "yes" or "no" questions. The prediction we are trying to make here is whether an individual makes over 50K or not. Basically, what our model does is it analyzes all of the features of the individuals in our dataset and attempts to determine which ones are more prominent among individuals who make more than 50K a year. A probablity is assigned to an individual based on how many "strong" features they have. If the probabilty is high enough, the model will predict that the person makes over 50K. For example, if the model found that 85% of individuals in the training data with a master's degree make over 50K. It would probably rank a master's degree as a strong feature and give individual's with a master's degree a much higher probabilty of making over 50K a year.</p>
+The model we are using here to solve our problem is called Logistic Regression. This model is good at making predictions for "yes" or "no" questions. The prediction we are trying to make here is whether an individual makes over 50K or not. Basically, what our model does is it analyzes all of the features of the individuals in our dataset and attempts to determine which ones are more prominent among individuals who make more than 50K a year. The model calculates probabilties for features as strong indicators of a person earning more than 50k or not by counting how many times they occur in the obeserved data. The sum of the natural logs of these probabilties is taken to determine the probabilty of an individual earning over 50k. When the sums of these probabilities are graphed, an "s" shaped decision boundary is created. This decision boundary seperates the individuals who are predicted to make over 50k and those who are not.</p>
 
 </div>
 </div>
