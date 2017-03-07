@@ -44,7 +44,7 @@ class LearningAgent(Agent):
             self.epsilon = 0
             self.alpha = 0
         else:
-            self.epsilon = self.epsilon - .005
+            self.epsilon = self.epsilon - .005 # .005
 
         return None
 
@@ -89,18 +89,18 @@ class LearningAgent(Agent):
 
         if state in self.Q:
             actions = self.Q[state]
-            print "//////////////MAXQACT///////////////"
-            print actions
-            print "////////////////////////////////////"
             maxQ = max(actions, key=actions.get)
+            print "//////////////MAXQACT///////////////"
+            print maxQ
+            print "////////////////////////////////////"
             maxQ_value = actions[maxQ]
             maxQ_actions = [k for k, action in actions.items() if action == maxQ_value]
             action = random.choice(maxQ_actions)
-            print "//////////////MAXQACTS///////////////"
-            print maxQ_value
-            print maxQ_actions
-            print action
-            print "////////////////////////////////////"
+            #print "//////////////MAXQACTS///////////////"
+            #print maxQ_value
+            #print maxQ_actions
+            #print action
+            #print "////////////////////////////////////"
             # had to change 'None' to None because the value in single quotes kept raising an error
             if action == 'None':
                 action = None
@@ -179,10 +179,10 @@ class LearningAgent(Agent):
                     update_value = self.Q[state][action] + (self.alpha * (reward - self.Q[state][action]))
                     self.Q[state][action] = update_value
                 else:
-                    print "////////////////////////////////165////////////////////////"
-                    print self
-                    print state
-                    print "////////////////////////////////165////////////////////////"
+                    #print "////////////////////////////////165////////////////////////"
+                    #print self
+                    #print state
+                    #print "////////////////////////////////165////////////////////////"
                     self.createQ(state)
 
             else:
